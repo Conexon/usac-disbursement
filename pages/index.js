@@ -1,5 +1,14 @@
+import Content from '../components/Content';
+import Map from '../components/Map';
+
 const HomePage = () => {
-  return <div className="text-6xl">Welcome poop to Next.js!</div>;
+  return (
+    <div>
+      <Map />
+      <Content />
+      Welcome poop to Next.js!
+    </div>
+  );
 };
 
 export default HomePage;
