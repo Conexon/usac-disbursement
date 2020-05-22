@@ -1,12 +1,150 @@
 import Title from './Title';
 import Intro from './Intro';
-const Content = () => {
+
+const RemainContent = ({ properties }) => {
+  console.log('RemainContent', properties);
+  return (
+    <div className="rounded-lg shadow-lg bg-white px-4 py-5 border border-gray-200 sm:px-6 mt-8">
+      <p className="mb-8">
+        USAC reports and distributes money based on the Study Area Code (SAC)
+        geography. There is no wall to wall publically avaialble dataset for
+        SACs, leaving the public to guess at where these funds are meant to
+        provide service. The red shaded area represents the unaccounted for
+        funds presented below in{' '}
+        <span className="font-semibold">{properties.state_name}</span>.
+      </p>
+      <table className="min-w-full mb-8">
+        <tbody>
+          <tr>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Statistic
+            </th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Amount
+            </th>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              High Cost
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-500">
+              {properties.unacc_hc}
+            </td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              CAF
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-500">
+              {properties.unacc_caf}
+            </td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              Total
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-500">
+              {properties.total}
+            </td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              Number of SACs unaccounted for
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-500">
+              {properties.num_sac}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const PolyContent = ({ properties }) => {
+  console.log('PolyContent', properties);
+  return (
+    <div className="rounded-lg shadow-lg bg-white px-4 py-5 border border-gray-200 sm:px-6 mt-8">
+      <p className="mb-8">
+        <span className="font-semibold">{properties.co_lower}</span> has
+        received the federal support shown below to deliver broadband in the red
+        shaded area. Even with this support, the orange shaded areas still lack
+        access to basic broadband services, such as services that are widely
+        available in urban and suburban areas.
+      </p>
+      <table className="min-w-full mb-8">
+        <tbody>
+          <tr>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Program
+            </th>
+            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Support since 2015
+            </th>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              High Cost
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-500">
+              {properties.high_cost}
+            </td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              CAF
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-500">
+              {properties.caf}
+            </td>
+          </tr>
+          <tr>
+            <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
+              Total
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+              <strong>{properties.total}</strong>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ul className="text-xs text-gray-500">
+        <li>
+          Source: The Universal Service Administrative Co Funding Disbursement
+          Tool -{' '}
+          <a className="text-blue-500" href="https://www.usac.org">
+            https://www.usac.org
+          </a>
+        </li>
+        <li>
+          FCC Form 477 -{' '}
+          <a className="text-blue-500" href="http://www.fcc.gov">
+            http://www.fcc.gov
+          </a>
+        </li>
+        <li>Unserved is defined as lacking 25/3 service</li>
+      </ul>
+    </div>
+  );
+};
+
+const Content = (props) => {
+  console.log('Content ', props.highlightType, props.properties);
+
   return (
     <div>
       <Title />
       <Intro />
+
+      {props.highlightType === 'poly' && props.properties ? (
+        <PolyContent properties={props.properties} />
+      ) : props.highlightType === 'remain' && props.properties ? (
+        <RemainContent properties={props.properties} />
+      ) : null}
     </div>
   );
+
+  return null;
 };
 
 export default Content;

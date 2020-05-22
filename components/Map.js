@@ -1,9 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 
+import Content from '../components/Content';
+
 const Map = () => {
   const [theMap, setTheMap] = useState(null);
   const mapDiv = useRef(null);
+  const [highlightType, setHighlightType] = useState(null);
+  const [properties, setProperties] = useState(null);
 
   useEffect(() => {
     mapboxgl.accessToken =
@@ -11,17 +15,15 @@ const Map = () => {
 
     const map = new mapboxgl.Map({
       container: mapDiv.current,
-      hash: true,
       style: 'mapbox://styles/conexon-design/cjow6vt3sax7q2rpbj5wm7s84',
-      center: [-91.96, 38.02],
+      center: [-96.25, 40],
       minZoom: 4,
       maxZoom: 10,
       zoom: 4,
     });
 
     setTheMap(map);
-    //}
-    // remove the map when component unmounts
+
     return function cleanUp() {
       map.remove();
     };
@@ -29,38 +31,20 @@ const Map = () => {
 
   useEffect(() => {
     if (theMap) {
-      const sac_remain_URL = 'mapbox://conexon-design.sac_remain';
-      const sac_remain_SourceLayer = 'sac_remain';
-      const unserved_1_URL = 'mapbox://conexon-design.unserved_1';
-      const unserved_1_SourceLayer = 'unserved_1';
-      const unserved_2_URL = 'mapbox://conexon-design.unserved_2';
-      const unserved_2_SourceLayer = 'unserved_2';
-      const unserved_3_URL = 'mapbox://conexon-design.unserved_3';
-      const unserved_3_SourceLayer = 'unserved_3';
-      const unserved_4_URL = 'mapbox://conexon-design.unserved_4';
-      const unserved_4_SourceLayer = 'unserved_4';
-      const unserved_5_URL = 'mapbox://conexon-design.unserved_5';
-      const unserved_5_SourceLayer = 'unserved_5';
-      const unserved_6_URL = 'mapbox://conexon-design.unserved_6';
-      const unserved_6_SourceLayer = 'unserved_6';
-      const SACUrl = 'mapbox://conexon-design.sac';
-      const SACSourceLayer = 'sac';
+      const unservedFill = 'orange';
+      const blackBorder = 'black';
+      const SACFill = 'blue';
+      const SACSelectFill = 'red';
 
-      const unservedFill = '#FFA500';
-      const blackBorder = '#000000';
-      const SACFill = '#0000FF';
-      const SACSelectFill = '#0000FF';
       theMap.on('load', function () {
-        //the unaccoutned for sac remain
         theMap.addLayer({
           id: 'sac_remain',
           type: 'fill',
           source: {
             type: 'vector',
-            url: sac_remain_URL,
+            url: 'mapbox://conexon-design.sac_remain',
           },
-          'source-layer': sac_remain_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
+          'source-layer': 'sac_remain',
           paint: {
             'fill-color': unservedFill,
             'fill-opacity': 0.1,
@@ -70,106 +54,15 @@ const Map = () => {
             visibility: 'visible',
           },
         });
-        //unserved layer
+
         theMap.addLayer({
           id: 'unserved_1',
           type: 'fill',
           source: {
             type: 'vector',
-            url: unserved_1_URL,
+            url: 'mapbox://conexon-design.unserved_1',
           },
-          'source-layer': unserved_1_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
-          paint: {
-            'fill-color': unservedFill,
-            'fill-opacity': 0.7,
-            'fill-outline-color': blackBorder,
-          },
-          layout: {
-            visibility: 'visible',
-          },
-        });
-        theMap.addLayer({
-          id: 'unserved_2',
-          type: 'fill',
-          source: {
-            type: 'vector',
-            url: unserved_2_URL,
-          },
-          'source-layer': unserved_2_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
-          paint: {
-            'fill-color': unservedFill,
-            'fill-opacity': 0.7,
-            'fill-outline-color': blackBorder,
-          },
-          layout: {
-            visibility: 'visible',
-          },
-        });
-        theMap.addLayer({
-          id: 'unserved_3',
-          type: 'fill',
-          source: {
-            type: 'vector',
-            url: unserved_3_URL,
-          },
-          'source-layer': unserved_3_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
-          paint: {
-            'fill-color': unservedFill,
-            'fill-opacity': 0.7,
-            'fill-outline-color': blackBorder,
-          },
-          layout: {
-            visibility: 'visible',
-          },
-        });
-        theMap.addLayer({
-          id: 'unserved_4',
-          type: 'fill',
-          source: {
-            type: 'vector',
-            url: unserved_4_URL,
-          },
-          'source-layer': unserved_4_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
-          paint: {
-            'fill-color': unservedFill,
-            'fill-opacity': 0.7,
-            'fill-outline-color': blackBorder,
-          },
-          layout: {
-            visibility: 'visible',
-          },
-        });
-        theMap.addLayer({
-          id: 'unserved_5',
-          type: 'fill',
-          source: {
-            type: 'vector',
-            url: unserved_5_URL,
-          },
-          'source-layer': unserved_5_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
-          paint: {
-            'fill-color': unservedFill,
-            'fill-opacity': 0.7,
-            'fill-outline-color': blackBorder,
-          },
-          layout: {
-            visibility: 'visible',
-          },
-        });
-        theMap.addLayer({
-          id: 'unserved_6',
-          type: 'fill',
-          source: {
-            type: 'vector',
-            url: unserved_6_URL,
-          },
-          'source-layer': unserved_6_SourceLayer,
-          // filter: ['>', 'fcc_904', 0],
+          'source-layer': 'unserved_1',
           paint: {
             'fill-color': unservedFill,
             'fill-opacity': 0.7,
@@ -180,15 +73,104 @@ const Map = () => {
           },
         });
 
-        //SAC layer
+        theMap.addLayer({
+          id: 'unserved_2',
+          type: 'fill',
+          source: {
+            type: 'vector',
+            url: 'mapbox://conexon-design.unserved_2',
+          },
+          'source-layer': 'unserved_2',
+          paint: {
+            'fill-color': unservedFill,
+            'fill-opacity': 0.7,
+            'fill-outline-color': blackBorder,
+          },
+          layout: {
+            visibility: 'visible',
+          },
+        });
+
+        theMap.addLayer({
+          id: 'unserved_3',
+          type: 'fill',
+          source: {
+            type: 'vector',
+            url: 'mapbox://conexon-design.unserved_3',
+          },
+          'source-layer': 'unserved_3',
+          paint: {
+            'fill-color': unservedFill,
+            'fill-opacity': 0.7,
+            'fill-outline-color': blackBorder,
+          },
+          layout: {
+            visibility: 'visible',
+          },
+        });
+
+        theMap.addLayer({
+          id: 'unserved_4',
+          type: 'fill',
+          source: {
+            type: 'vector',
+            url: 'mapbox://conexon-design.unserved_4',
+          },
+          'source-layer': 'unserved_4',
+          paint: {
+            'fill-color': unservedFill,
+            'fill-opacity': 0.7,
+            'fill-outline-color': blackBorder,
+          },
+          layout: {
+            visibility: 'visible',
+          },
+        });
+
+        theMap.addLayer({
+          id: 'unserved_5',
+          type: 'fill',
+          source: {
+            type: 'vector',
+            url: 'mapbox://conexon-design.unserved_5',
+          },
+          'source-layer': 'unserved_5',
+          paint: {
+            'fill-color': unservedFill,
+            'fill-opacity': 0.7,
+            'fill-outline-color': blackBorder,
+          },
+          layout: {
+            visibility: 'visible',
+          },
+        });
+
+        theMap.addLayer({
+          id: 'unserved_6',
+          type: 'fill',
+          source: {
+            type: 'vector',
+            url: 'mapbox://conexon-design.unserved_6',
+          },
+          'source-layer': 'unserved_6',
+          paint: {
+            'fill-color': unservedFill,
+            'fill-opacity': 0.7,
+            'fill-outline-color': blackBorder,
+          },
+          layout: {
+            visibility: 'visible',
+          },
+        });
+
         theMap.addLayer({
           id: 'sac_poly',
           type: 'fill',
           source: {
             type: 'vector',
-            url: SACUrl,
+            url: 'mapbox://conexon-design.sac',
           },
-          'source-layer': SACSourceLayer,
+          'source-layer': 'sac',
           paint: {
             'fill-color': SACFill,
             'fill-opacity': 0.1,
@@ -204,9 +186,9 @@ const Map = () => {
           type: 'line',
           source: {
             type: 'vector',
-            url: SACUrl,
+            url: 'mapbox://conexon-design.sac',
           },
-          'source-layer': SACSourceLayer,
+          'source-layer': 'sac',
           paint: {
             'line-color': SACFill,
             'line-width': 1.1,
@@ -216,16 +198,91 @@ const Map = () => {
           },
         });
       });
+
+      theMap.on('click', 'sac_poly', (event) => {
+        console.log('poly', event.features[0].properties);
+        theMap.setPaintProperty('sac_poly', 'fill-color', [
+          'case',
+          ['==', ['get', 'sac'], event.features[0].properties.sac],
+          'red',
+          SACSelectFill,
+        ]);
+        theMap.setPaintProperty('sac_poly', 'fill-opacity', [
+          'case',
+          ['==', ['get', 'sac'], event.features[0].properties.sac],
+          0.4,
+          0.1,
+        ]);
+
+        theMap.setPaintProperty('sac_remain', 'fill-color', unservedFill);
+        theMap.setPaintProperty('sac_remain', 'fill-opacity', 0.1);
+
+        setHighlightType('poly');
+        setProperties(event.features[0].properties);
+      });
+
+      theMap.on('click', 'sac_remain', (event) => {
+        console.log('remain', event.features[0].properties);
+        theMap.setPaintProperty('sac_remain', 'fill-color', [
+          'case',
+          [
+            '==',
+            ['get', 'state_abbv'],
+            event.features[0].properties.state_abbv,
+          ],
+          'red',
+          SACSelectFill,
+        ]);
+        theMap.setPaintProperty('sac_remain', 'fill-opacity', [
+          'case',
+          [
+            '==',
+            ['get', 'state_abbv'],
+            event.features[0].properties.state_abbv,
+          ],
+          0.8,
+          0.1,
+        ]);
+
+        theMap.setPaintProperty('sac_poly', 'fill-color', SACSelectFill);
+        theMap.setPaintProperty('sac_poly', 'fill-opacity', 0.1);
+
+        setHighlightType('remain');
+        setProperties(event.features[0].properties);
+      });
+
+      theMap.on('mouseenter', 'sac_poly', function () {
+        theMap.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      theMap.on('mouseleave', 'sac_poly', function () {
+        theMap.getCanvas().style.cursor = '';
+      });
+
+      theMap.on('mouseenter', 'sac_remain', function () {
+        theMap.getCanvas().style.cursor = 'pointer';
+      });
+
+      // Change it back to a pointer when it leaves.
+      theMap.on('mouseleave', 'sac_remain', function () {
+        theMap.getCanvas().style.cursor = '';
+      });
     }
   }, [theMap]);
 
+  console.log('Map ', highlightType);
   return (
-    <div
-      id="map"
-      ref={mapDiv}
-      className="w-full max-w-full"
-      style={{ height: '600px' }}
-    ></div>
+    <div className="grid grid-cols-2 gap-4 mx-8">
+      <div
+        id="map"
+        ref={mapDiv}
+        className="w-full max-w-full"
+        style={{ height: '600px' }}
+      ></div>
+
+      <Content highlightType={highlightType} properties={properties} />
+    </div>
   );
 };
 

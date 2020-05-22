@@ -1,14 +1,11 @@
-import Content from '../components/Content';
-import Map from '../components/Map';
+import dynamic from 'next/dynamic';
+
+const Map = dynamic(() => import('../components/Map'), {
+  ssr: false,
+});
 
 const HomePage = () => {
-  return (
-    <div>
-      <Map />
-      <Content />
-      Welcome poop to Next.js!
-    </div>
-  );
+  return <Map />;
 };
 
 export default HomePage;
