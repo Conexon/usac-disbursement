@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:Conexon/usac-disbursement.git",
   "author": "Andrew Wolfe <awolfe76@gmail.com>",
-  "license": "GNU GENERAL PUBLIC LICENSE",
+  "license": "GPL-1.0-or-later",
   "private": false,
   "scripts": {
     "dev": "next",

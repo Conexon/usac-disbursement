@@ -273,13 +273,14 @@ const Map = () => {
 
   console.log('Map ', highlightType);
   return (
-    <div className="grid grid-cols-2 gap-4 mx-8">
-      <div
-        id="map"
-        ref={mapDiv}
-        className="w-full max-w-full"
-        style={{ height: '600px' }}
-      ></div>
+    <div className="grid grid-cols-12">
+      <div className="col-span-7">
+        <div
+          id="map"
+          ref={mapDiv}
+          className="w-full max-w-full min-h-screen"
+        ></div>
+      </div>
 
       <Content highlightType={highlightType} properties={properties} />
     </div>
