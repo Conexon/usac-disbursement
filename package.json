@@ -1,0 +1,24 @@
+{
+  "name": "usac-disbursement",
+  "version": "0",
+  "main": "index.js",
+  "repository": "git@github.com:Conexon/usac-disbursement.git",
+  "author": "Andrew Wolfe <awolfe76@gmail.com>",
+  "license": "GNU GENERAL PUBLIC LICENSE",
+  "private": false,
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@tailwindcss/ui": "0.3.0",
+    "autoprefixer": "9.8.0",
+    "mapbox-gl": "1.10.1",
+    "next": "9.4.2",
+    "postcss-import": "12.0.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "tailwindcss": "1.4.6"
+  }
+}

@@ -1,0 +1,5 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
