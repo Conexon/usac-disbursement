@@ -1,13 +1,10 @@
-import Title from './Title';
-import Intro from './Intro';
-
 const RemainContent = ({ properties }) => {
   return (
-    <div className="bg-white overflow-hidden shadow rounded-lg mt-8">
-      <h2 className="border-b border-gray-200 px-4 py-5 sm:px-6 text-2xl">
+    <div className="mt-8">
+      <h2 className="border-b border-gray-200 py-5 text-2xl">
         {properties.state_name}
       </h2>
-      <div className="px-4 py-5 sm:p-6">
+      <div className="py-5">
         <p className="mb-8">
           USAC reports and distributes money based on the Study Area Code (SAC)
           geography. There is no wall to wall publically avaialble dataset for
@@ -67,11 +64,11 @@ const RemainContent = ({ properties }) => {
 
 const PolyContent = ({ properties }) => {
   return (
-    <div className="bg-white overflow-hidden shadow rounded-lg mt-8">
-      <h2 className="border-b border-gray-200 px-4 py-5 sm:px-6 text-2xl">
+    <div className="mt-8">
+      <h2 className="border-b border-gray-200 py-5 text-2xl">
         {properties.co_lower}
       </h2>
-      <div className="px-4 py-5 sm:p-6">
+      <div className="py-5">
         <p className="mb-8">
           <span className="font-semibold">{properties.co_lower}</span> has
           received the federal support shown below to deliver broadband in the
@@ -138,31 +135,14 @@ const PolyContent = ({ properties }) => {
 
 const Content = (props) => {
   return (
-    <div className="col-span-5">
-      <div className="m-8">
-        <div className="mb-8">
-          <a href="https://www.conexon.us/" title="Conexon.us">
-            <img
-              src="/conexon-logo-white.png"
-              alt="Conexon"
-              width="25px"
-              className="inline"
-            />{' '}
-            <span className="font-semibold">conexon</span>
-          </a>
-        </div>
-        <Title />
-        <Intro />
-        {props.highlightType === 'poly' && props.properties ? (
-          <PolyContent properties={props.properties} />
-        ) : props.highlightType === 'remain' && props.properties ? (
-          <RemainContent properties={props.properties} />
-        ) : null}
-      </div>
+    <div className="max-w-3xl mx-auto">
+      {props.highlightType === 'poly' && props.properties ? (
+        <PolyContent properties={props.properties} />
+      ) : props.highlightType === 'remain' && props.properties ? (
+        <RemainContent properties={props.properties} />
+      ) : null}
     </div>
   );
-
-  return null;
 };
 
 export default Content;

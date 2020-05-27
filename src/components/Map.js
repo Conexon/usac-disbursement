@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 
+import Title from '../components/Title';
+import Intro from '../components/Intro';
 import Content from '../components/Content';
 
 const Map = () => {
@@ -271,19 +273,31 @@ const Map = () => {
     }
   }, [theMap]);
 
-  console.log('Map ', highlightType);
   return (
-    <div className="grid grid-cols-12">
-      <div className="col-span-7">
-        <div
-          id="map"
-          ref={mapDiv}
-          className="w-full max-w-full min-h-screen"
-        ></div>
+    <>
+      <div className="max-w-3xl mx-auto">
+        <div className="m-8">
+          <div className="mb-8">
+            <a href="https://www.conexon.us/" title="Conexon.us">
+              <img
+                src="/conexon-logo-white.png"
+                alt="Conexon"
+                width="25px"
+                className="inline"
+              />{' '}
+              <span className="font-semibold">conexon</span>
+            </a>
+          </div>
+          <Title />
+          <Intro />
+        </div>
       </div>
 
+      <div style={{ height: '50vh' }}>
+        <div id="map" ref={mapDiv} className="w-full max-w-full h-full"></div>
+      </div>
       <Content highlightType={highlightType} properties={properties} />
-    </div>
+    </>
   );
 };
 
