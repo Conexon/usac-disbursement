@@ -2,16 +2,17 @@ const Intro = () => {
   return (
     <div>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-        pharetra tempor massa id convallis. Aenean ex eros, aliquet ac sapien
-        at, fermentum pretium dui. Quisque varius volutpat leo sit amet
-        fermentum.
+        This map represents all funding disbursed from the Universal 
+        Service Administration Cooporation for High Cost and Connect
+        America Fund programs from January 2015 through March 2020.
       </p>
       <p>
-        Nullam lobortis, magna id vulputate dignissim, lacus purus rhoncus urna,
-        varius condimentum ex nisl id leo. Nullam ut pharetra lacus, vitae
-        pellentesque ipsum. Nunc faucibus mattis nisl vitae gravida. Nam quis
-        lacinia nulla, ut pretium orci.
+        Clicking on any place on the map will result in a table
+        displayed below of the amount of funding given to that 
+        company to further broadband availability.  The orange areas 
+        still lack broadband services that are widely available in urban areas.
+        Unaccounted for funds are typically disbursed to Price Cap 
+        carriers like AT&T.
       </p>
     </div>
   );

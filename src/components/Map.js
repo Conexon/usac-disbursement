@@ -17,9 +17,9 @@ const Map = () => {
       container: mapDiv.current,
       style: 'mapbox://styles/conexon-design/cjow6vt3sax7q2rpbj5wm7s84',
       center: [-96.25, 40],
-      minZoom: 4,
+      minZoom: 3.5,
       maxZoom: 10,
-      zoom: 4,
+      zoom: 3.5,
     });
 
     setTheMap(map);

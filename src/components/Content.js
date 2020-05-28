@@ -5,7 +5,7 @@ const RemainContent = ({ properties }) => {
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg mt-8">
       <h2 className="border-b border-gray-200 px-4 py-5 sm:px-6 text-2xl">
-        {properties.state_name}
+        Unaccounted For Funds in {properties.state_name} 
       </h2>
       <div className="px-4 py-5 sm:p-6">
         <p className="mb-8">
@@ -20,10 +20,10 @@ const RemainContent = ({ properties }) => {
           <tbody>
             <tr>
               <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                Statistic
+                Program
               </th>
               <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                Amount
+                Amount Unaccounted for
               </th>
             </tr>
             <tr>
@@ -129,7 +129,13 @@ const PolyContent = ({ properties }) => {
               http://www.fcc.gov
             </a>
           </li>
-          <li>Unserved is defined as lacking 25/3 service</li>
+          <li>Unserved is defined as lacking Fiber or Cable (consumer) service</li>
+          <li>
+            How we made this map -{' '}
+            <a className="text-blue-500" href="https://github.com/Conexon/usac-disbursement">
+              https://github.com/Conexon/usac-disbursement
+            </a>
+          </li>          
         </ul>
       </div>
     </div>
