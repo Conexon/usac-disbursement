@@ -9,11 +9,11 @@ const RemainContent = ({ properties }) => {
       </h2>
 
       <p className="my-8">
-        USAC reports and distributes money based on the Study Area Code (SAC)
+        USAC distributes and reports funds based on the Study Area Code (SAC)
         geography. There is no wall to wall publically avaialble dataset for
         SACs, leaving the public to guess at where these funds are meant to
         provide service. The red shaded area represents the unaccounted for
-        funds presented below in{' '}
+        funds in{' '}
         <span className="font-semibold">{properties.state_name}</span>.
       </p>
       <table className="min-w-full">
@@ -129,7 +129,7 @@ const PolyContent = ({ properties }) => {
           </a>
         </li>
         <li>
-          Unserved is defined as lacking Fiber or Cable (consumer) service
+          Unserved is defined as lacking Fiber or Cable service
         </li>
         <li>
           How we made this map -{' '}
