@@ -1,7 +1,7 @@
 # usac-disbursement
 ====================
 
-This repo is for the map at https://usacdisbursement.com.
+This repo is for the map at https://nationalunbroadbandmap.com.
 
 - `docs` contains documentation and data for how we made the map.  `docs` contains:
     - `data` - for links or downloads to data
