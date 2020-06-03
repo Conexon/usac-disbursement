@@ -14,7 +14,11 @@ const RemainContent = ({ properties }) => {
         SACs, leaving the public to guess at where these funds are meant to
         provide service. The red shaded area represents the unaccounted for
         funds presented below in{' '}
-        <span className="font-semibold">{properties.state_name}</span>.
+        <span className="font-semibold">{properties.state_name}</span>
+        {properties.state_name === 'Mississippi'
+          ? ' (Cellular South Licenses, New Cingular Wireless PCS)'
+          : null}
+        .
       </p>
       <table className="min-w-full">
         <tbody>
