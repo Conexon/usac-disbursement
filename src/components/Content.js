@@ -13,8 +13,11 @@ const RemainContent = ({ properties }) => {
         geography. There is no wall to wall publically avaialble dataset for
         SACs, leaving the public to guess at where these funds are meant to
         provide service. The red shaded area represents the unaccounted for
-        funds in{' '}
-        <span className="font-semibold">{properties.state_name}</span>.
+        funds in <span className="font-semibold">{properties.state_name}</span>
+        {properties.state_name === 'Mississippi'
+          ? ' (Cellular South Licenses, New Cingular Wireless PCS)'
+          : null}
+        .
       </p>
       <table className="min-w-full">
         <tbody>
@@ -128,9 +131,7 @@ const PolyContent = ({ properties }) => {
             http://www.fcc.gov
           </a>
         </li>
-        <li>
-          Unserved is defined as lacking Fiber or Cable service
-        </li>
+        <li>Unserved is defined as lacking Fiber or Cable service</li>
         <li>
           How we made this map -{' '}
           <a
