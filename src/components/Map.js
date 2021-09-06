@@ -168,9 +168,9 @@ const Map = () => {
           type: 'fill',
           source: {
             type: 'vector',
-            url: 'mapbox://conexon-design.sac_2021',
+            url: 'mapbox://conexon-design.sac',
           },
-          'source-layer': 'sac_2021',
+          'source-layer': 'sac',
           paint: {
             'fill-color': SACFill,
             'fill-opacity': 0.1,
@@ -186,9 +186,9 @@ const Map = () => {
           type: 'line',
           source: {
             type: 'vector',
-            url: 'mapbox://conexon-design.sac_2021',
+            url: 'mapbox://conexon-design.sac',
           },
-          'source-layer': 'sac_2021',
+          'source-layer': 'sac',
           paint: {
             'line-color': SACFill,
             'line-width': 1.1,
