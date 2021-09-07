@@ -17,7 +17,7 @@ geographic datasets
 tabular dataset
 ----------------
 - we use the FCC Form 477 from June 2019 to determine unserved.  we join the 477 data with US Census Block data (above) on the unique block code.  The data download for each state can be found here https://www.fcc.gov/general/broadband-deployment-data-fcc-form-477.  We 
-- we use the USAC funding disbursement tool to download funding disbursed to each state.  that tool can be found here https://apps.usac.org/li/tools/disbursements/default.aspx.
+- we use the USAC funding disbursement tool to download funding disbursed to each state.  that tool can be found here https://opendata.usac.org/High-Cost/High-Cost-Funding-Disbursement-Search/cegz-dzzi.
 
 
 Processing
@@ -32,8 +32,14 @@ Unserved - orange areas on the map for unserved blocks
 
 Disbursement 
 ------------
-- we create a postgres table to store all of the disbursement data.  we then load all of the USAC csv downloaded files into that table, with the script named `./docs/processing/sql/load_disbursement.sql`
-- we then dissolve our wirecenter data to SAC only layer, giving us a unique SAC code per polygon.  Now with a SAC code on a polygon layer, and a SAC code on the disbursement table, we use the script `./docs/processing/sql/pop_cost.sql` to sum the amount of money USAC has disbursed to all SAC codes for which we have a polygon. 
+- we will periodically need to update this map, based on disbursements made from USAC.
+- the script `./processing/python/load_highcost.py` will load a csv locally into the table `fcc:usac.disbursed` - go to the disbursement tool `https://opendata.usac.org/High-Cost/High-Cost-Funding-Disbursement-Search/cegz-dzzi` and export all the disbursements.  you might want to keep versions of this table, eg rename the table when writing to it, so that we keep track of the table annually or somethign, but not required.
+	- the old approach was to use a script to copy from, but this does not work in AWS, so the new approach above must be used.  old approach is - we create a postgres table to store all of the disbursement data.  we then load all of the USAC csv downloaded files into that table, with the script named `./docs/processing/sql/load_disbursement.sql`
+- the sql script `./processing/sql/pop_cost.sql` is used to create and populate a new table for a given year which is then exported to mapbox.  this sql script should be edited to change:
+	- the table name to `usac.sac_<year>` so that we know the year associated with the data
+	- this table is no longer `dissolved` (perhaps never was), but the UI selects and highlights all polygons w/ the same `co_name` (for example - need to confirm)
+	- the old approach was:
+		- we then dissolve our wirecenter data to SAC only layer, giving us a unique SAC code per polygon.  Now with a SAC code on a polygon layer, and a SAC code on the disbursement table, we use the script `./docs/processing/sql/pop_cost.sql` to sum the amount of money USAC has disbursed to all SAC codes for which we have a polygon. 
 
 remaining
 ---------
